@@ -2,6 +2,8 @@ package com.turkcell.ecommercewdb.controllers;
 
 import com.turkcell.ecommercewdb.entities.Customer;
 import com.turkcell.ecommercewdb.services.abstracts.CustomerService;
+import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerFullNameResponse;
+import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerProductResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,5 +21,23 @@ public class CustomersController {
     public List<Customer> getAll()
     {
         return customerService.getAll();
+    }
+
+    @GetMapping("searchName")
+    public List<CustomerFullNameResponse> searchName(String query)
+    {
+        return customerService.searchInNames(query);
+    }
+
+    @GetMapping("findByPaymentMethod")
+    public List<CustomerFullNameResponse> findByPaymentMethod(String query)
+    {
+        return customerService.findByPaymentMethod(query);
+    }
+
+    @GetMapping("PurchasedProducts")
+    public List<CustomerProductResponse> getPurchasedProducts()
+    {
+        return customerService.getPurchasedProducts();
     }
 }

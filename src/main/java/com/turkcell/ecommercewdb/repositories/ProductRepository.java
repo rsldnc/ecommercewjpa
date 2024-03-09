@@ -20,4 +20,10 @@ public interface ProductRepository extends JpaRepository<Product,Integer> {
             "(p.name, p.stock)" +
             "from Product p")
     List<ProductStockResponse> getProductStock();
+
+    @Query(value = "SELECT COUNT(*) from Product p JOIN p.category c WHERE lower(c.name) = lower(:query)")
+    int productCountInCategory(String query);
+
+    @Query("SELECT p.name FROM Product p WHERE p.price = (SELECT MAX(p2.price) FROM Product p2)")
+    List<String> findMostExpensiveProduct();
 }

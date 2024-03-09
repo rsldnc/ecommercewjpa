@@ -18,4 +18,9 @@ public class OrderProductServiceImpl implements OrderProductService {
     public List<OrderProduct> getAll() {
         return orderProductRepository.findAll();
     }
+
+    @Override
+    public List<String> getProducts() {
+        return orderProductRepository.getProducts();
+    }
 }

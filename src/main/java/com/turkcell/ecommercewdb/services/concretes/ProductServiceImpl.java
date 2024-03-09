@@ -31,4 +31,14 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductStockResponse> getStock() {
         return productRepository.getProductStock();
     }
+
+    @Override
+    public int productCountInCategory(String query) {
+        return productRepository.productCountInCategory(query);
+    }
+
+    @Override
+    public List<String> findMostExpensiveProduct() {
+        return productRepository.findMostExpensiveProduct();
+    }
 }

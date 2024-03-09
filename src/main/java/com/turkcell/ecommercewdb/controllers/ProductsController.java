@@ -34,4 +34,16 @@ public class ProductsController {
     {
         return productService.getStock();
     }
+
+    @GetMapping("productCountInCategory")
+    public int productCountInCategory(String query)
+    {
+        return productService.productCountInCategory(query);
+    }
+
+    @GetMapping("mostExpensiveProduct")
+    public List<String> findMostExpensiveProduct()
+    {
+        return productService.findMostExpensiveProduct();
+    }
 }

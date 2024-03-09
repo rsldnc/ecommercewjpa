@@ -20,4 +20,10 @@ public class OrdersProductsController {
     {
         return orderProductService.getAll();
     }
+
+    @GetMapping("products")
+    List<String> products()
+    {
+        return orderProductService.getProducts();
+    }
 }

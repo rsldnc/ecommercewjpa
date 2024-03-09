@@ -11,4 +11,6 @@ public interface ProductService {
     List<Product> getAll();
     List<ProductCategoryNameResponse> getCategoryNames();
     List<ProductStockResponse> getStock();
+    int productCountInCategory(String query);
+    List<String> findMostExpensiveProduct();
 }
