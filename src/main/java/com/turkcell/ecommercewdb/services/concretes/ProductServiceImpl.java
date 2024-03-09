@@ -5,6 +5,7 @@ import com.turkcell.ecommercewdb.entities.Product;
 import com.turkcell.ecommercewdb.repositories.ProductRepository;
 import com.turkcell.ecommercewdb.services.abstracts.ProductService;
 import com.turkcell.ecommercewdb.services.dtos.product.responses.ProductCategoryNameResponse;
+import com.turkcell.ecommercewdb.services.dtos.product.responses.ProductStockResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,5 +25,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductCategoryNameResponse> getCategoryNames() {
         return productRepository.getProductCategoryName();
+    }
+
+    @Override
+    public List<ProductStockResponse> getStock() {
+        return productRepository.getProductStock();
     }
 }

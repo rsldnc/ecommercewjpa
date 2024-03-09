@@ -20,4 +20,10 @@ public class CategoriesController {
     {
         return categoryService.getAll();
     }
+
+    @GetMapping("categoryCount")
+    public int categoryCount()
+    {
+        return categoryService.getCount();
+    }
 }

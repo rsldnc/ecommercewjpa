@@ -3,6 +3,7 @@ package com.turkcell.ecommercewdb.controllers;
 import com.turkcell.ecommercewdb.entities.Product;
 import com.turkcell.ecommercewdb.services.abstracts.ProductService;
 import com.turkcell.ecommercewdb.services.dtos.product.responses.ProductCategoryNameResponse;
+import com.turkcell.ecommercewdb.services.dtos.product.responses.ProductStockResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,5 +27,11 @@ public class ProductsController {
     public List<ProductCategoryNameResponse> categoryName()
     {
         return productService.getCategoryNames();
+    }
+
+    @GetMapping("stock")
+    public List<ProductStockResponse> stock()
+    {
+        return productService.getStock();
     }
 }
