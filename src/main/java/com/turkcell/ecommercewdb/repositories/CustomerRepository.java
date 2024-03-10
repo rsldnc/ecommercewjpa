@@ -56,4 +56,12 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
             " WHERE pt.type = 'Coupon'")
     List<CustomerWithOrderAmountsResponse>getCustomersPaysWithCouponsAndAmounts();
 
+    @Query("SELECT new com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerOrderProductAmount" +
+            "(c.firstName, c.lastName, SUM(op.quantity))" +
+            " FROM Customer c JOIN c.orders o" +
+            " JOIN o.orderProductList op" +
+            " JOIN op.product p" +
+            " GROUP BY c.firstName, c.lastName" +
+            " ORDER BY SUM(op.quantity) DESC")
+    List<CustomerOrderProductAmount> getCustomerPurchasedMostProduct();
 }

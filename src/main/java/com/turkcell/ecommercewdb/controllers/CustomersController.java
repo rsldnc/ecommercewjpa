@@ -59,4 +59,10 @@ public class CustomersController {
     public List<CustomerWithOrderAmountsResponse> getCustomersPaysWithCouponsAndAmounts(){
        return customerService.getCustomersPaysWithCouponsAndAmounts();
     }
+
+    @GetMapping("customerPurchasedMostProduct")
+    public CustomerOrderProductAmount customerPurchasedMostProduct()
+    {
+        return customerService.getCustomerPurchasedMostProduct();
+    }
 }

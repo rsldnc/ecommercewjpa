@@ -20,4 +20,6 @@ public interface CustomerService {
     List<CustomerWithOrderAmountsResponse> getCustomersPaysWithCouponsAndAmounts();
 
     List<CustomerOrderProductAmount> getProductCountGreaterThan(int productCount);
+
+    CustomerOrderProductAmount getCustomerPurchasedMostProduct();
 }

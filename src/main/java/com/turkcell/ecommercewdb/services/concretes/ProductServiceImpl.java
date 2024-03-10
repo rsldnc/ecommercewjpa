@@ -47,10 +47,6 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.getAvaragePriceOfProducts();
     }
 
-    @Override
-    public List<String> findMostCheapProduct() {
-        return productRepository.findMostCheapProduct();
-    }
 
     @Override
     public int productCountInBrand(String query) {

@@ -49,6 +49,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public CustomerOrderProductAmount getCustomerPurchasedMostProduct() {
+        return customerRepository.getCustomerPurchasedMostProduct().get(0);
+    }
+
+    @Override
     public List<CustomerWithOrderAmountsResponse> getCustomersPaysWithCouponsAndAmounts() {
         return customerRepository.getCustomersPaysWithCouponsAndAmounts();
     }
