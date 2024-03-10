@@ -4,6 +4,7 @@ import com.turkcell.ecommercewdb.entities.Customer;
 import com.turkcell.ecommercewdb.repositories.CustomerRepository;
 import com.turkcell.ecommercewdb.services.abstracts.CustomerService;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerFullNameResponse;
+import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerOrderProductAmount;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerProductResponse;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerTypesResponse;
 import lombok.AllArgsConstructor;
@@ -39,5 +40,10 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<CustomerTypesResponse> getCustomerAndTypes() {
         return customerRepository.getCustomerAndTypes();
+    }
+
+    @Override
+    public List<CustomerOrderProductAmount> getProductCountGreaterThan(int productCount) {
+        return customerRepository.getCustomersProductCountGreaterThan(productCount);
     }
 }

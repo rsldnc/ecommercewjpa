@@ -3,6 +3,7 @@ package com.turkcell.ecommercewdb.controllers;
 import com.turkcell.ecommercewdb.entities.Customer;
 import com.turkcell.ecommercewdb.services.abstracts.CustomerService;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerFullNameResponse;
+import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerOrderProductAmount;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerProductResponse;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerTypesResponse;
 import lombok.AllArgsConstructor;
@@ -41,9 +42,15 @@ public class CustomersController {
         return customerService.getCustomerAndTypes();
     }
 
-    @GetMapping("PurchasedProducts")
+    @GetMapping("purchasedProducts")
     public List<CustomerProductResponse> getPurchasedProducts()
     {
         return customerService.getPurchasedProducts();
+    }
+
+    @GetMapping("productCountGreaterThan")
+    public List<CustomerOrderProductAmount> getProductCountGreaterThan(int productCount)
+    {
+        return customerService.getProductCountGreaterThan(productCount);
     }
 }

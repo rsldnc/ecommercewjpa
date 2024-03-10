@@ -2,6 +2,7 @@ package com.turkcell.ecommercewdb.repositories;
 
 import com.turkcell.ecommercewdb.entities.Customer;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerFullNameResponse;
+import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerOrderProductAmount;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerProductResponse;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerTypesResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -36,4 +37,13 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
             "(c.firstName, c.lastName , ct.type )" +
             " from Customer c JOIN c.customerType ct")
     List<CustomerTypesResponse> getCustomerAndTypes();
+
+    @Query("SELECT new com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerOrderProductAmount" +
+            "(c.firstName, c.lastName, COUNT(p.id))" +
+            " FROM Customer c JOIN c.orders o" +
+            " JOIN o.orderProductList op" +
+            " JOIN op.product p" +
+            " GROUP BY c.firstName, c.lastName" +
+            " HAVING COUNT(p.id) > :productCount")
+    List<CustomerOrderProductAmount> getCustomersProductCountGreaterThan(int productCount);
 }

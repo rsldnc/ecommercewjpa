@@ -2,6 +2,7 @@ package com.turkcell.ecommercewdb.services.abstracts;
 
 import com.turkcell.ecommercewdb.entities.Customer;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerFullNameResponse;
+import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerOrderProductAmount;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerProductResponse;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerTypesResponse;
 
@@ -14,4 +15,6 @@ public interface CustomerService {
     List<CustomerProductResponse> getPurchasedProducts();
 
     List<CustomerTypesResponse> getCustomerAndTypes();
+
+    List<CustomerOrderProductAmount> getProductCountGreaterThan(int productCount);
 }
