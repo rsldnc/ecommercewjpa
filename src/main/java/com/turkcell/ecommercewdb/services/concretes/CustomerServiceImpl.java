@@ -7,6 +7,7 @@ import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerFullNa
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerOrderProductAmount;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerProductResponse;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerTypesResponse;
+import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerWithOrderAmountsResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -45,5 +46,10 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<CustomerOrderProductAmount> getProductCountGreaterThan(int productCount) {
         return customerRepository.getCustomersProductCountGreaterThan(productCount);
+    }
+
+    @Override
+    public List<CustomerWithOrderAmountsResponse> getCustomersPaysWithCouponsAndAmounts() {
+        return customerRepository.getCustomersPaysWithCouponsAndAmounts();
     }
 }

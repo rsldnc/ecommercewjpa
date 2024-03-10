@@ -5,6 +5,7 @@ import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerFullNa
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerOrderProductAmount;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerProductResponse;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerTypesResponse;
+import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerWithOrderAmountsResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -46,4 +47,13 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
             " GROUP BY c.firstName, c.lastName" +
             " HAVING COUNT(p.id) > :productCount")
     List<CustomerOrderProductAmount> getCustomersProductCountGreaterThan(int productCount);
+
+    @Query(value = "Select new com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerWithOrderAmountsResponse" +
+            "(c.firstName, c.lastName, o.amount)" +
+            " FROM Customer c JOIN c.orders o" +
+            " JOIN o.payment p" +
+            " JOIN p.paymentTypes pt" +
+            " WHERE pt.type = 'Coupon'")
+    List<CustomerWithOrderAmountsResponse>getCustomersPaysWithCouponsAndAmounts();
+
 }

@@ -5,6 +5,7 @@ import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerFullNa
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerOrderProductAmount;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerProductResponse;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerTypesResponse;
+import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerWithOrderAmountsResponse;
 
 import java.util.List;
 
@@ -15,6 +16,8 @@ public interface CustomerService {
     List<CustomerProductResponse> getPurchasedProducts();
 
     List<CustomerTypesResponse> getCustomerAndTypes();
+
+    List<CustomerWithOrderAmountsResponse> getCustomersPaysWithCouponsAndAmounts();
 
     List<CustomerOrderProductAmount> getProductCountGreaterThan(int productCount);
 }

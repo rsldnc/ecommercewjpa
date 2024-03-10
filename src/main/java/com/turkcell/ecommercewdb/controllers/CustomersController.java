@@ -6,6 +6,7 @@ import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerFullNa
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerOrderProductAmount;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerProductResponse;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerTypesResponse;
+import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerWithOrderAmountsResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,5 +53,10 @@ public class CustomersController {
     public List<CustomerOrderProductAmount> getProductCountGreaterThan(int productCount)
     {
         return customerService.getProductCountGreaterThan(productCount);
+    }
+
+    @GetMapping("customersPaysWithCouponsAndAmounts")
+    public List<CustomerWithOrderAmountsResponse> getCustomersPaysWithCouponsAndAmounts(){
+       return customerService.getCustomersPaysWithCouponsAndAmounts();
     }
 }
