@@ -56,5 +56,11 @@ public class ProductsController {
     @GetMapping("avaragePriceOfProducts")
     public int avaragePriceOfProducts(){ return productService.getAvaragePriceOfProducts();}
 
+    @GetMapping("productCountInBrand")
+    public int productCountInBrand(String query)
+    {
+        return productService.productCountInBrand(query);
+    }
+
 
 }

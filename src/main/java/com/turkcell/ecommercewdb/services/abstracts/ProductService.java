@@ -17,4 +17,6 @@ public interface ProductService {
     int getAvaragePriceOfProducts();
 
     List<String> findMostCheapProduct();
+
+    int productCountInBrand(String query);
 }
