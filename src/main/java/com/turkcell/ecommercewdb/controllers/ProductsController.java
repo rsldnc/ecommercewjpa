@@ -47,6 +47,14 @@ public class ProductsController {
         return productService.findMostExpensiveProduct();
     }
 
+        @GetMapping("mostCheapProduct")
+    public List<String> findMostCheapProduct()
+    {
+        return productService.findMostCheapProduct();
+    }
+
     @GetMapping("avaragePriceOfProducts")
     public int avaragePriceOfProducts(){ return productService.getAvaragePriceOfProducts();}
+
+
 }

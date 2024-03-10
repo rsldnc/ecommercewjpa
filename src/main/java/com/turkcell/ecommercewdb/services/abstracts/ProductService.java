@@ -15,4 +15,6 @@ public interface ProductService {
     List<String> findMostExpensiveProduct();
 
     int getAvaragePriceOfProducts();
+
+    List<String> findMostCheapProduct();
 }
