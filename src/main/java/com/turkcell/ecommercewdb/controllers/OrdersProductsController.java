@@ -2,10 +2,11 @@ package com.turkcell.ecommercewdb.controllers;
 
 import com.turkcell.ecommercewdb.entities.OrderProduct;
 import com.turkcell.ecommercewdb.services.abstracts.OrderProductService;
+import com.turkcell.ecommercewdb.services.dtos.customerType.requests.AddCustomerTypeRequest;
+import com.turkcell.ecommercewdb.services.dtos.orderProduct.requests.AddOrderProductRequest;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +26,11 @@ public class OrdersProductsController {
     List<String> products()
     {
         return orderProductService.getProducts();
+    }
+
+    @PostMapping
+    public void add(@RequestBody @Valid AddOrderProductRequest request)
+    {
+        orderProductService.add(request);
     }
 }
