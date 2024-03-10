@@ -2,10 +2,10 @@ package com.turkcell.ecommercewdb.controllers;
 
 import com.turkcell.ecommercewdb.entities.Category;
 import com.turkcell.ecommercewdb.services.abstracts.CategoryService;
+import com.turkcell.ecommercewdb.services.dtos.category.requests.AddCategoryRequest;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +25,11 @@ public class CategoriesController {
     public int categoryCount()
     {
         return categoryService.getCount();
+    }
+
+    @PostMapping
+    public void add(@RequestBody @Valid AddCategoryRequest request)
+    {
+        categoryService.add(request);
     }
 }
