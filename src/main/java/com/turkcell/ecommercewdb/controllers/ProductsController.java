@@ -46,4 +46,7 @@ public class ProductsController {
     {
         return productService.findMostExpensiveProduct();
     }
+
+    @GetMapping("avaragePriceOfProducts")
+    public int avaragePriceOfProducts(){ return productService.getAvaragePriceOfProducts();}
 }

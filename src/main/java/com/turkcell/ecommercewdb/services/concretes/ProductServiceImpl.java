@@ -41,4 +41,9 @@ public class ProductServiceImpl implements ProductService {
     public List<String> findMostExpensiveProduct() {
         return productRepository.findMostExpensiveProduct();
     }
+
+    @Override
+    public int getAvaragePriceOfProducts() {
+        return productRepository.getAvaragePriceOfProducts();
+    }
 }

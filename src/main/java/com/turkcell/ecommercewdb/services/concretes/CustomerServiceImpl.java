@@ -5,6 +5,7 @@ import com.turkcell.ecommercewdb.repositories.CustomerRepository;
 import com.turkcell.ecommercewdb.services.abstracts.CustomerService;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerFullNameResponse;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerProductResponse;
+import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerTypesResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -33,5 +34,10 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<CustomerProductResponse> getPurchasedProducts() {
         return customerRepository.getPurchasedProducts();
+    }
+
+    @Override
+    public List<CustomerTypesResponse> getCustomerAndTypes() {
+        return customerRepository.getCustomerAndTypes();
     }
 }

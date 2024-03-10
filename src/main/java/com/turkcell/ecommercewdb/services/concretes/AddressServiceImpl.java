@@ -17,4 +17,11 @@ public class AddressServiceImpl implements AddressService {
     public List<Address> getAll() {
         return addressRepository.findAll();
     }
+
+    @Override
+    public int getCount() {
+        return addressRepository.getAddressCount();
+    }
+
+
 }

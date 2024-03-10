@@ -20,4 +20,10 @@ public class AddressesController {
     {
         return addressService.getAll();
     }
+
+    @GetMapping("addressCount")
+    public int addressCount()
+    {
+        return addressService.getCount();
+    }
 }

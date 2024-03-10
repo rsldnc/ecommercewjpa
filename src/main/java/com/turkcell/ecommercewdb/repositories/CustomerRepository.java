@@ -3,6 +3,7 @@ package com.turkcell.ecommercewdb.repositories;
 import com.turkcell.ecommercewdb.entities.Customer;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerFullNameResponse;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerProductResponse;
+import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerTypesResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -29,4 +30,10 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
             " JOIN o.orderProductList op" +
             " JOIN op.product p")
     List<CustomerProductResponse> getPurchasedProducts();
+
+
+    @Query(value = "Select new com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerTypesResponse" +
+            "(c.firstName, c.lastName , ct.type )" +
+            " from Customer c JOIN c.customerType ct")
+    List<CustomerTypesResponse> getCustomerAndTypes();
 }

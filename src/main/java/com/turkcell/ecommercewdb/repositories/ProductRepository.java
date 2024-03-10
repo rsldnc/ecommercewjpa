@@ -26,4 +26,9 @@ public interface ProductRepository extends JpaRepository<Product,Integer> {
 
     @Query("SELECT p.name FROM Product p WHERE p.price = (SELECT MAX(p2.price) FROM Product p2)")
     List<String> findMostExpensiveProduct();
+
+
+
+    @Query("SELECT AVG(p.price) FROM Product p")
+    int getAvaragePriceOfProducts();
 }

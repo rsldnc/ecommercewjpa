@@ -2,6 +2,8 @@ package com.turkcell.ecommercewdb.controllers;
 
 import com.turkcell.ecommercewdb.entities.PaymentType;
 import com.turkcell.ecommercewdb.services.abstracts.PaymentTypeService;
+import com.turkcell.ecommercewdb.services.dtos.paymenttypes.responses.PaymentTypesNameResponse;
+import com.turkcell.ecommercewdb.services.dtos.product.responses.ProductStockResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,5 +21,11 @@ public class PaymentTypesController {
     public List<PaymentType> getAll()
     {
         return paymentTypeService.getAll();
+    }
+
+    @GetMapping("typeNames")
+    public List<PaymentTypesNameResponse> getPaymentTypes()
+    {
+        return paymentTypeService.getPaymentTypes();
     }
 }
