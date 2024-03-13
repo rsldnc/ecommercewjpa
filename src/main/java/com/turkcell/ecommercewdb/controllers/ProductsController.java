@@ -2,12 +2,12 @@ package com.turkcell.ecommercewdb.controllers;
 
 import com.turkcell.ecommercewdb.entities.Product;
 import com.turkcell.ecommercewdb.services.abstracts.ProductService;
+import com.turkcell.ecommercewdb.services.dtos.product.requests.AddProductRequest;
 import com.turkcell.ecommercewdb.services.dtos.product.responses.ProductCategoryNameResponse;
 import com.turkcell.ecommercewdb.services.dtos.product.responses.ProductStockResponse;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -59,4 +59,9 @@ public class ProductsController {
     }
 
 
+    @PostMapping
+    public void add(@RequestBody @Valid AddProductRequest request)
+    {
+        productService.add(request);
+    }
 }

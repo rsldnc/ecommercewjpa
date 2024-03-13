@@ -1,8 +1,11 @@
 package com.turkcell.ecommercewdb.services.concretes;
 
+import com.turkcell.ecommercewdb.entities.Address;
 import com.turkcell.ecommercewdb.entities.Customer;
+import com.turkcell.ecommercewdb.entities.CustomerType;
 import com.turkcell.ecommercewdb.repositories.CustomerRepository;
 import com.turkcell.ecommercewdb.services.abstracts.CustomerService;
+import com.turkcell.ecommercewdb.services.dtos.customer.requests.AddCustomerRequest;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerFullNameResponse;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerOrderProductAmount;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerProductResponse;
@@ -51,6 +54,25 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerOrderProductAmount getCustomerPurchasedMostProduct() {
         return customerRepository.getCustomerPurchasedMostProduct().get(0);
+    }
+
+    @Override
+    public void add(AddCustomerRequest request) {
+        CustomerType customerType = new CustomerType();
+        customerType.setId(request.getCustomerTypeId());
+        Address address = new Address();
+        address.setId(request.getAddressId());
+
+        Customer customer = new Customer();
+        customer.setFirstName(request.getFirstName());
+        customer.setLastName(request.getLastName());
+        customer.setMail(request.getMail());
+        customer.setPassword(request.getPassword());
+        customer.setPhoneNumber(request.getPhoneNumber());
+        customer.setCustomerType(customerType);
+        customer.setAddress(address);
+
+        customerRepository.save(customer);
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.turkcell.ecommercewdb.services.abstracts;
 
 import com.turkcell.ecommercewdb.entities.PaymentType;
 import com.turkcell.ecommercewdb.entities.Product;
+import com.turkcell.ecommercewdb.services.dtos.product.requests.AddProductRequest;
 import com.turkcell.ecommercewdb.services.dtos.product.responses.ProductCategoryNameResponse;
 import com.turkcell.ecommercewdb.services.dtos.product.responses.ProductStockResponse;
 
@@ -18,4 +19,6 @@ public interface ProductService {
 
 
     int productCountInBrand(String query);
+
+    void add(AddProductRequest request);
 }

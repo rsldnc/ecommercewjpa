@@ -1,6 +1,7 @@
 package com.turkcell.ecommercewdb.services.abstracts;
 
 import com.turkcell.ecommercewdb.entities.Customer;
+import com.turkcell.ecommercewdb.services.dtos.customer.requests.AddCustomerRequest;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerFullNameResponse;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerOrderProductAmount;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerProductResponse;
@@ -22,4 +23,6 @@ public interface CustomerService {
     List<CustomerOrderProductAmount> getProductCountGreaterThan(int productCount);
 
     CustomerOrderProductAmount getCustomerPurchasedMostProduct();
+
+    void add(AddCustomerRequest request);
 }

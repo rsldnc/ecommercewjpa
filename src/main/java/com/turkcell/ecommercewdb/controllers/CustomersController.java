@@ -2,15 +2,15 @@ package com.turkcell.ecommercewdb.controllers;
 
 import com.turkcell.ecommercewdb.entities.Customer;
 import com.turkcell.ecommercewdb.services.abstracts.CustomerService;
+import com.turkcell.ecommercewdb.services.dtos.customer.requests.AddCustomerRequest;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerFullNameResponse;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerOrderProductAmount;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerProductResponse;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerTypesResponse;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerWithOrderAmountsResponse;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -64,5 +64,11 @@ public class CustomersController {
     public CustomerOrderProductAmount customerPurchasedMostProduct()
     {
         return customerService.getCustomerPurchasedMostProduct();
+    }
+
+    @PostMapping
+    public void add(@RequestBody @Valid AddCustomerRequest request)
+    {
+        customerService.add(request);
     }
 }
