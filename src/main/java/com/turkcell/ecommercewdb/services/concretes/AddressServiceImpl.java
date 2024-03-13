@@ -1,5 +1,6 @@
 package com.turkcell.ecommercewdb.services.concretes;
 
+import com.turkcell.ecommercewdb.core.exception.types.BusinessException;
 import com.turkcell.ecommercewdb.entities.Address;
 import com.turkcell.ecommercewdb.repositories.AddressRepository;
 import com.turkcell.ecommercewdb.services.abstracts.AddressService;
@@ -30,7 +31,7 @@ public class AddressServiceImpl implements AddressService {
         List<Address> addresses = addressRepository.findAll();
         for (Address address : addresses) {
             if (isSameAddress(request, address))
-                throw new IllegalArgumentException("This address already exists");
+                throw new BusinessException("This address already exists");
         }
 
         Address address = new Address();

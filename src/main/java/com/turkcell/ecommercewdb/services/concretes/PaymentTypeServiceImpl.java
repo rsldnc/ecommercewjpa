@@ -1,5 +1,6 @@
 package com.turkcell.ecommercewdb.services.concretes;
 
+import com.turkcell.ecommercewdb.core.exception.types.BusinessException;
 import com.turkcell.ecommercewdb.entities.CustomerType;
 import com.turkcell.ecommercewdb.entities.PaymentType;
 import com.turkcell.ecommercewdb.repositories.PaymentTypeRepository;
@@ -33,7 +34,7 @@ public class PaymentTypeServiceImpl implements PaymentTypeService {
         List<PaymentType> paymentTypes = paymentTypeRepository.findAll();
         for (PaymentType paymentType : paymentTypes) {
             if (paymentType.getType().toLowerCase().equals(request.getType().toLowerCase()))
-                throw new IllegalArgumentException("This payment type already exists");
+                throw new BusinessException("This payment type already exists");
         }
 
         PaymentType paymentType = new PaymentType();

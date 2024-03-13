@@ -1,5 +1,6 @@
 package com.turkcell.ecommercewdb.services.concretes;
 
+import com.turkcell.ecommercewdb.core.exception.types.BusinessException;
 import com.turkcell.ecommercewdb.entities.Category;
 import com.turkcell.ecommercewdb.entities.CustomerType;
 import com.turkcell.ecommercewdb.repositories.CustomerTypeRepository;
@@ -25,7 +26,7 @@ public class CustomerTypeServiceImpl implements CustomerTypeService {
         List<CustomerType> customerTypes = customerTypeRepository.findAll();
         for (CustomerType customerType : customerTypes) {
             if (customerType.getType().toLowerCase().equals(request.getType().toLowerCase()))
-                throw new IllegalArgumentException("This customer type already exists");
+                throw new BusinessException("This customer type already exists");
         }
 
         CustomerType customerType = new CustomerType();

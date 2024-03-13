@@ -1,5 +1,6 @@
 package com.turkcell.ecommercewdb.services.concretes;
 
+import com.turkcell.ecommercewdb.core.exception.types.BusinessException;
 import com.turkcell.ecommercewdb.entities.Category;
 import com.turkcell.ecommercewdb.repositories.CategoryRepository;
 import com.turkcell.ecommercewdb.services.abstracts.CategoryService;
@@ -29,7 +30,7 @@ public class CategoryServiceImpl implements CategoryService {
         List<Category> categories = categoryRepository.findAll();
         for (Category category : categories) {
             if (category.getName().toLowerCase().equals(request.getName().toLowerCase()))
-                throw new IllegalArgumentException("This category already exists");
+                throw new BusinessException("This category already exists");
         }
 
         Category category = new Category();
