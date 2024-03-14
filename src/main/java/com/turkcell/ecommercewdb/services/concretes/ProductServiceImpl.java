@@ -9,6 +9,7 @@ import com.turkcell.ecommercewdb.services.abstracts.ProductService;
 import com.turkcell.ecommercewdb.services.dtos.product.requests.AddProductRequest;
 import com.turkcell.ecommercewdb.services.dtos.product.responses.ProductCategoryNameResponse;
 import com.turkcell.ecommercewdb.services.dtos.product.responses.ProductStockResponse;
+import com.turkcell.ecommercewdb.services.mappers.ProductMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -58,17 +59,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void add(AddProductRequest request) {
-        Category category = new Category();
-        category.setId(request.getCategoryId());
-        Brand brand = new Brand();
-        brand.setId(request.getBrandId());
-
-        Product product = new Product();
-        product.setName(request.getName());
-        product.setStock(request.getStock());
-        product.setPrice(request.getPrice());
-        product.setCategory(category);
-        product.setBrand(brand);
+        Product product = ProductMapper.INSTANCE.productFromAddRequest(request);
 
         productRepository.save(product);
     }

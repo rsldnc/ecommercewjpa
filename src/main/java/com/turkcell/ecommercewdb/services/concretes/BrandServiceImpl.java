@@ -4,6 +4,7 @@ import com.turkcell.ecommercewdb.entities.Brand;
 import com.turkcell.ecommercewdb.repositories.BrandRepository;
 import com.turkcell.ecommercewdb.services.abstracts.BrandService;
 import com.turkcell.ecommercewdb.services.dtos.brand.requests.AddBrandRequest;
+import com.turkcell.ecommercewdb.services.mappers.BrandMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,9 +23,7 @@ public class BrandServiceImpl implements BrandService
 
     @Override
     public void add(AddBrandRequest request) {
-        Brand brand = new Brand();
-
-        brand.setName(request.getName());
+        Brand brand = BrandMapper.INSTANCE.brandFromAddRequest(request);
 
         brandRepository.save(brand);
     }

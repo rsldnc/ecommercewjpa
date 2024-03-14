@@ -11,6 +11,7 @@ import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerOrderP
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerProductResponse;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerTypesResponse;
 import com.turkcell.ecommercewdb.services.dtos.customer.responses.CustomerWithOrderAmountsResponse;
+import com.turkcell.ecommercewdb.services.mappers.CustomerMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -58,19 +59,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void add(AddCustomerRequest request) {
-        CustomerType customerType = new CustomerType();
-        customerType.setId(request.getCustomerTypeId());
-        Address address = new Address();
-        address.setId(request.getAddressId());
-
-        Customer customer = new Customer();
-        customer.setFirstName(request.getFirstName());
-        customer.setLastName(request.getLastName());
-        customer.setMail(request.getMail());
-        customer.setPassword(request.getPassword());
-        customer.setPhoneNumber(request.getPhoneNumber());
-        customer.setCustomerType(customerType);
-        customer.setAddress(address);
+        Customer customer = CustomerMapper.INSTANCE.customerFromAddRequest(request);
 
         customerRepository.save(customer);
     }
