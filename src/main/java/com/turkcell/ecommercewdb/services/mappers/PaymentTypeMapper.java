@@ -10,6 +10,5 @@ public interface PaymentTypeMapper {
 
     PaymentTypeMapper INSTANCE = Mappers.getMapper(PaymentTypeMapper.class);
 
-    @Mapping(target = "payments", ignore = true) // @OneToMany ilişkisini ignore et
     PaymentType paymentTypeFromAddRequest(AddPaymentTypeRequest request);
 }
