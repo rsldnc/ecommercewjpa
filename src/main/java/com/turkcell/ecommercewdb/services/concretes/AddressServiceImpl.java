@@ -2,9 +2,12 @@ package com.turkcell.ecommercewdb.services.concretes;
 
 import com.turkcell.ecommercewdb.core.exception.types.BusinessException;
 import com.turkcell.ecommercewdb.entities.Address;
+import com.turkcell.ecommercewdb.entities.Product;
 import com.turkcell.ecommercewdb.repositories.AddressRepository;
 import com.turkcell.ecommercewdb.services.abstracts.AddressService;
 import com.turkcell.ecommercewdb.services.dtos.address.requests.AddAddressRequest;
+import com.turkcell.ecommercewdb.services.mappers.AddressMapper;
+import com.turkcell.ecommercewdb.services.mappers.ProductMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -27,21 +30,7 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public void add(AddAddressRequest request) {
-
-        List<Address> addresses = addressRepository.findAll();
-        for (Address address : addresses) {
-            if (isSameAddress(request, address))
-                throw new BusinessException("This address already exists");
-        }
-
-        Address address = new Address();
-        address.setCity(request.getCity());
-        address.setDistrict(request.getDistrict());
-        address.setStreet(request.getStreet());
-        address.setBuilding(request.getBuilding());
-        address.setPostCode(request.getPostCode());
-        address.setAddressDetails(request.getAddressDetails());
-
+        Address address = AddressMapper.INSTANCE.addressFromAddRequest(request);
         addressRepository.save(address);
     }
 

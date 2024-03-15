@@ -8,6 +8,8 @@ import com.turkcell.ecommercewdb.services.abstracts.PaymentTypeService;
 import com.turkcell.ecommercewdb.services.dtos.customerType.requests.AddCustomerTypeRequest;
 import com.turkcell.ecommercewdb.services.dtos.paymenttypes.requests.AddPaymentTypeRequest;
 import com.turkcell.ecommercewdb.services.dtos.paymenttypes.responses.PaymentTypesNameResponse;
+import com.turkcell.ecommercewdb.services.mappers.CustomerTypeMapper;
+import com.turkcell.ecommercewdb.services.mappers.PaymentTypeMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -31,15 +33,10 @@ public class PaymentTypeServiceImpl implements PaymentTypeService {
 
     @Override
     public void add(AddPaymentTypeRequest request) {
-        List<PaymentType> paymentTypes = paymentTypeRepository.findAll();
-        for (PaymentType paymentType : paymentTypes) {
-            if (paymentType.getType().toLowerCase().equals(request.getType().toLowerCase()))
-                throw new BusinessException("This payment type already exists");
-        }
 
-        PaymentType paymentType = new PaymentType();
-
-        paymentType.setType(request.getType());
+        PaymentType paymentType = PaymentTypeMapper.INSTANCE.paymentTypeFromAddRequest(request);
         paymentTypeRepository.save(paymentType);
+
     }
+
 }

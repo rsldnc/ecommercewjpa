@@ -6,6 +6,7 @@ import com.turkcell.ecommercewdb.entities.CustomerType;
 import com.turkcell.ecommercewdb.repositories.CustomerTypeRepository;
 import com.turkcell.ecommercewdb.services.abstracts.CustomerTypeService;
 import com.turkcell.ecommercewdb.services.dtos.customerType.requests.AddCustomerTypeRequest;
+import com.turkcell.ecommercewdb.services.mappers.CustomerTypeMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,15 +24,8 @@ public class CustomerTypeServiceImpl implements CustomerTypeService {
 
     @Override
     public void add(AddCustomerTypeRequest request) {
-        List<CustomerType> customerTypes = customerTypeRepository.findAll();
-        for (CustomerType customerType : customerTypes) {
-            if (customerType.getType().toLowerCase().equals(request.getType().toLowerCase()))
-                throw new BusinessException("This customer type already exists");
-        }
 
-        CustomerType customerType = new CustomerType();
-
-        customerType.setType(request.getType());
+        CustomerType customerType = CustomerTypeMapper.INSTANCE.customerTypeFromAddRequest(request);
         customerTypeRepository.save(customerType);
     }
 }
